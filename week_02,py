@@ -1,0 +1,8 @@
+numbers = [4, 7, "twelve", 15, None, 22, 3.5, -8, [], 9, True, "6"]
+
+for x in numbers:
+    try:
+        if x % 2 == 0:
+            print(x)
+    except TypeError:
+        print(f"Skipping bad value: {x!r}")
