@@ -38,6 +38,32 @@ WHERE
 ORDER BY
   base.ticker, base.price;
 
+-- Same question, third way: a window function with QUALIFY instead of a join or a
+-- correlated subquery. AVG(...) OVER (PARTITION BY ticker) computes each row's own
+-- ticker average without collapsing rows, and QUALIFY filters on that window result
+-- directly. Also 29 rows, same avg_by_ticker values as the CTE version above.
+--
+-- Caveat: adding ORDER BY inside OVER (...) normally changes the default frame from
+-- "the whole partition" to a running total (RANGE BETWEEN UNBOUNDED PRECEDING AND
+-- CURRENT ROW), which would turn avg_by_ticker into a cumulative average instead of
+-- a flat per-ticker one. It doesn't happen here only because instrument_id is constant
+-- within each ticker's partition -- RANGE framing groups tied ORDER BY values into one
+-- peer group, so "up to my peers" still means "the whole partition." Ordering by
+-- something that actually varies per row (price, trade_date) would silently break this.
+SELECT
+  pt.instrument_id,
+  pi.ticker,
+  pt.price,
+  AVG(pt.price)
+    OVER (PARTITION BY ticker ORDER BY pt.instrument_id ASC) AS avg_by_ticker
+FROM
+  `de-project-finance.market_practice.trades` AS pt
+LEFT JOIN
+  `de-project-finance.market_practice.instruments` AS pi
+  USING (instrument_id)
+QUALIFY
+  pt.price > avg_by_ticker;
+
 -- Question: now find trades above the overall average price. Expected value: 238.08.
 -- Expected: 11 rows -- and every one of them is MSFT. MSFT's own average (473.05)
 -- sits so far above the blended global average that the other four tickers (all
