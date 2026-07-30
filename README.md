@@ -1,33 +1,56 @@
 # AWS Data Engineering Portfolio — Finance Track
 
-Building a portfolio of AWS data engineering projects on finance/markets data, as a stepping-stone toward Quant Developer roles.
+Production-shaped data engineering on AWS, built from finance and markets data.
 
 ## About
 
-I'm Ronald, a Data Analyst (2+ years) at Publicis Groupe, working in Python, SQL, BigQuery, GCP and Dataform. This repo is a structured, 25-week build toward a Data Engineer role in fintech/capital markets — a more winnable first move than Software Engineer given my SQL/GCP background —
+I'm Ronald, a Data Analyst with 2+ years' experience working in Python, SQL, BigQuery, GCP and Dataform. This repo is the index for a structured 26-week build toward **Analytics Engineer** and **Data Engineer** roles in fintech, banking and capital markets — a more winnable first move than Software Engineer given my SQL and cloud background. Quant Developer is the later step, reached from inside a markets-data engineering role rather than applied to cold.
+
+Every week produces a committed artefact. Small components accumulate into three major projects, so nothing here is throwaway practice — the utility module written in Week 1 is imported by the capstone in Week 25.
 
 ## Why AWS
 
-My paid GCP/BigQuery/Dataform experience stays on my CV as evidence of multi-cloud strength — it isn't rebuilt here. This portfolio is deliberately AWS because AWS has the widest data-engineer job volume in London fintech, and capital markets/hedge funds are increasingly AWS-based too (Amazon FinSpace, Snowflake-on-AWS). Snowflake is the one warehouse learned alongside Athena, since it's used across banks, hedge funds and fintech regardless of hyperscaler.
+My paid GCP/BigQuery/Dataform experience stays on my CV as evidence of multi-cloud strength; it isn't rebuilt here. This portfolio is deliberately AWS because AWS has the widest data engineering job volume in London fintech, and capital markets and hedge funds are increasingly AWS-based (Amazon FinSpace, Snowflake-on-AWS). Snowflake is the one warehouse learned alongside Athena, since it appears across banks, hedge funds and fintech regardless of hyperscaler.
 
 ## Projects
 
 | # | Project | Stack | Status |
 |---|---------|-------|--------|
-| 1 | **Equity Markets Analytics** — stock data → S3 → Athena (via a Python OOP `AthenaClient`) → QuickSight → written insight | Python, S3, Athena, QuickSight | In progress |
-| 2 | **Market Data ELT Pipeline** — markets API → S3 → Glue/Athena → dbt (star schema) → QuickSight, provisioned with Terraform | Glue, dbt, Terraform | Planned |
-| 3 | **Trading-Data Platform (capstone)** — adds Kafka streaming (simulated ticks), Airflow orchestration with retry logic, least-privilege IAM, CI/CD via GitHub Actions, data-quality tests with alerting | Kafka, Airflow, IAM, GitHub Actions | Planned |
+| 1 | [**Equity Markets Analytics**](https://github.com/<user>/equity-markets-analytics) — public equities → S3 → Athena (via a Python `AthenaClient` class) → pandas → QuickSight → a written insight | Python, boto3, S3, Athena, Glue, QuickSight | In progress |
+| 2 | [**Market Data ELT Pipeline**](https://github.com/<user>/market-data-elt) — markets API → S3 → Glue/Athena → dbt star schema → QuickSight, fully provisioned with Terraform | dbt, Glue, Terraform, Docker, pytest | Planned |
+| 3 | [**Trading-Data Platform**](https://github.com/<user>/trading-data-platform) — capstone. Adds a Kafka streaming path (simulated ticks), Airflow 3 orchestration with backfills and dynamic task mapping, least-privilege IAM, data-quality checks with alerting, and CI/CD | Kafka, Airflow 3, IAM, Great Expectations, GitHub Actions | Planned |
 
-Each project lives in its own directory with its own README, code, and a written summary of findings.
+Each project is a standalone repository with its own README, architecture diagram and written findings. **21 mini-projects** across the 26 weeks feed into them — a SQL query library, a packaged ingestion module, a Terraform stack, a dbt project, a production-shaped DAG.
 
-## Tooling notes
+## Engineering standards
 
-Built on free tiers and local tools wherever possible — dbt Core, Airflow and Kafka run via Docker Compose locally rather than paid managed services — with an AWS Budgets alert set from day one to avoid surprise billing.
+Applied across every repo from Week 1:
+
+- **Idempotent loads.** Re-running a pipeline must not duplicate data; deterministic S3 key naming is how that is achieved, and it is proven by running twice.
+- **Infrastructure as code.** Terraform, not console clicks. The stack is destroyed and rebuilt on demand.
+- **Tested transforms.** dbt tests on uniqueness, nullability and business rules; Great Expectations for the checks dbt cannot express.
+- **No secrets, ever.** Environment variables locally, AWS Secrets Manager in the cloud, and git history checked as well as the working tree.
+- **Least privilege.** One IAM role per service, and every policy tested to confirm it fails when it should.
+- **CI on every pull request.** pytest, `dbt build`, ruff and sqlfluff, with merges gated on green checks.
+
+## Cost control
+
+Built on free tiers and local tooling wherever possible — dbt Core, Airflow 3 and Kafka run under Docker Compose locally rather than as paid managed services — with an AWS Budgets alert set from day one and billable resources torn down when idle. Athena cost work is measured rather than assumed: Project 2 documents bytes scanned before and after converting to partitioned Parquet.
 
 ## Roadmap
 
-Following a 25-week structured plan: Phase 0 (environment setup), Phase 1 (engineering foundations — SQL, Python OOP, maths, Project 1), Phase 2 (DE core — modelling, dbt, Terraform, Docker, Project 2), Phase 3 (orchestration, security, production — Airflow, IAM, Kafka, CI/CD, Capstone), Phase 4 (job hunt).
+A 26-week plan in five phases:
+
+| Phase | Weeks | Focus |
+|---|---|---|
+| 1 | 1–5 | Core skills — Python, SQL, pandas, advanced SQL, OOP |
+| 2 | 6–10 | AWS foundations — S3, Athena, Glue, statistics, BI — and **Project 1** |
+| 3 | 11–19 | DE core — modelling, dbt, cost tuning, Terraform, Docker, production Python — and **Project 2** |
+| 4 | 20–24 | Production systems — Airflow in depth, IAM, data quality, CI/CD, Kafka |
+| 5 | 25–26 | **Capstone** and interview preparation |
+
+Environment setup (AWS account, budget alerts, first S3 bucket, tooling) was completed before Week 1. Applications begin in Week 10, in parallel with Phases 3–5, rather than at the end.
 
 ## Contact
 
-[LinkedIn] · [rwyiadom@gmail.com]
+[LinkedIn](https://linkedin.com/in/<user>) · rwyiadom@gmail.com
