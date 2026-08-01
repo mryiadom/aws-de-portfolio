@@ -58,7 +58,7 @@ Full interactive tracker: [`docs/aws-de-tracker.html`](docs/aws-de-tracker.html)
 **Phase 1 — Core Skills (Weeks 1–5)**
 - [x] Week 1 — Python Fundamentals
 - [x] Week 2 — SQL Fundamentals
-- [ ] Week 3 — Pandas Fundamentals
+- [x] Week 3 — Pandas Fundamentals
 - [ ] Week 4 — Advanced SQL: Window Functions, CTEs, Optimisation
 - [ ] Week 5 — Python OOP for Data Engineers
 
