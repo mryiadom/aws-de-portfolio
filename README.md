@@ -51,6 +51,46 @@ A 26-week plan in five phases:
 
 Environment setup (AWS account, budget alerts, first S3 bucket, tooling) was completed before Week 1. Applications begin in Week 10, in parallel with Phases 3–5, rather than at the end.
 
+## Progress
+
+Full interactive tracker: [`docs/aws-de-tracker.html`](docs/aws-de-tracker.html).
+
+**Phase 1 — Core Skills (Weeks 1–5)**
+- [x] Week 1 — Python Fundamentals
+- [x] Week 2 — SQL Fundamentals
+- [ ] Week 3 — Pandas Fundamentals
+- [ ] Week 4 — Advanced SQL: Window Functions, CTEs, Optimisation
+- [ ] Week 5 — Python OOP for Data Engineers
+
+**Phase 2 — AWS Foundations & First Project (Weeks 6–10)**
+- [ ] Week 6 — S3 & Athena: Building the Lake
+- [ ] Week 7 — Statistics & Maths for a Quant-Track Engineer
+- [ ] Week 8 — Visualisation Principles & BI (QuickSight)
+- [ ] Week 9 — Major Project 1: Equity Markets Analytics
+- [ ] Week 10 — Project 1 Polish + Start Applying
+
+**Phase 3 — Data Engineering Core (Weeks 11–19)**
+- [ ] Week 11 — Data Modelling & Normalisation
+- [ ] Week 12 — Dimensional Modelling (Kimball) + Snowflake Awareness
+- [ ] Week 13 — ETL vs ELT & Pipeline Architecture
+- [ ] Week 14 — dbt on Athena
+- [ ] Week 15 — Athena & S3 Performance and Cost
+- [ ] Week 16 — Infrastructure as Code (Terraform)
+- [ ] Week 17 — Docker & Containerisation
+- [ ] Week 18 — Production Python for Data Engineering
+- [ ] Week 19 — Major Project 2: Market Data ELT Pipeline
+
+**Phase 4 — Production Systems (Weeks 20–24)**
+- [ ] Week 20 — Orchestration I: Airflow Foundations
+- [ ] Week 21 — Orchestration II: Airflow in Production
+- [ ] Week 22 — Security & IAM for Data Platforms
+- [ ] Week 23 — Data Quality, Testing & CI/CD
+- [ ] Week 24 — Streaming with Kafka
+
+**Phase 5 — Capstone & Job Hunt (Weeks 25–26)**
+- [ ] Week 25 — Major Project 3: Trading-Data Platform (Build)
+- [ ] Week 26 — Capstone Polish, CV & Interview Prep
+
 ## Contact
 
 [LinkedIn](https://linkedin.com/in/<user>) · rwyiadom@gmail.com
